@@ -22,6 +22,7 @@ bool DumpCurrentVersion(const SKSEInterface* skse)
 		char fileName[256];
 		_snprintf_s(fileName, 256, "offsets-%d.%d.%d.txt", GET_EXE_VERSION_MAJOR(skse->runtimeVersion), GET_EXE_VERSION_MINOR(skse->runtimeVersion), GET_EXE_VERSION_BUILD(skse->runtimeVersion));
 		db.Dump(fileName);
+		_MESSAGE("Dumped to %s.", fileName);
 		db.Clear();
 
 	}
