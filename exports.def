@@ -1,4 +1,4 @@
-LIBRARY	"plugin"
+LIBRARY	"AddrLibDump"
 EXPORTS
 SKSEPlugin_Query
 SKSEPlugin_Load

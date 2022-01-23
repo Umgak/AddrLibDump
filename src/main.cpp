@@ -4,16 +4,16 @@
 #include <ShlObj.h>  // CSIDL_MYDOCUMENTS
 
 #include "version.h"  // VERSION_VERSTRING, VERSION_MAJOR
-#include "versiondb.h" //meh's magical versioning header
+#include "versiondb.h" // VersionDb
 
-bool DumpCurrentVersion(const SKSEInterface* skse)
+void DumpCurrentVersion(const SKSEInterface* skse)
 {
 	VersionDb db;
 
 	if (!db.Load())
 	{
 		_FATALERROR("Failed to load version database for current executable!");
-		return false;
+		return;
 	}
 	else
 	{
@@ -24,7 +24,7 @@ bool DumpCurrentVersion(const SKSEInterface* skse)
 		db.Dump(fileName);
 		_MESSAGE("Dumped to %s.", fileName);
 		db.Clear();
-
+		return;
 	}
 }
 
@@ -45,7 +45,7 @@ extern "C" {
 
 	bool SKSEPlugin_Query(const SKSEInterface* skse, PluginInfo* info)
 	{
-		gLog.OpenRelative(CSIDL_MYDOCUMENTS, "\\My Games\\Skyrim Special Edition\\SKSE\\AddressLibraryDumper.log");
+		gLog.OpenRelative(CSIDL_MYDOCUMENTS, R"(\My Games\Skyrim Special Edition\SKSE\AddressLibraryDumper.log)");
 		gLog.SetPrintLevel(IDebugLog::kLevel_DebugMessage);
 		gLog.SetLogLevel(IDebugLog::kLevel_DebugMessage);
 		_MESSAGE("Address Library Dumper v%s", ALD_VERSION_VERSTRING);
@@ -66,7 +66,7 @@ extern "C" {
 	{
 		if (skse->runtimeVersion >= RUNTIME_VERSION_1_6_317)
 		{
-			gLog.OpenRelative(CSIDL_MYDOCUMENTS, "\\My Games\\Skyrim Special Edition\\SKSE\\AddressLibraryDumper.log");
+			gLog.OpenRelative(CSIDL_MYDOCUMENTS, R"(\My Games\Skyrim Special Edition\SKSE\AddressLibraryDumper.log)");
 			gLog.SetPrintLevel(IDebugLog::kLevel_DebugMessage);
 			gLog.SetLogLevel(IDebugLog::kLevel_DebugMessage);
 			_MESSAGE("Address Library Dumper v%s", ALD_VERSION_VERSTRING);
