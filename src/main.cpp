@@ -38,6 +38,7 @@ extern "C" {
 		"Address Library Dumper",
 		"Umgak",
 		"",
+		SKSEPluginVersionData::kVersionIndependentEx_NoStructUse,
 		SKSEPluginVersionData::kVersionIndependent_AddressLibraryPostAE,
 		0,
 		0,
